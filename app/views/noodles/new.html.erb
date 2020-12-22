@@ -1,0 +1,37 @@
+<h1>Add in New Noodles</h1>
+
+<%= form_for(@noodle) do |f|%>
+<div>
+    <%= f.label :flavor %>
+    <%= f.text_field :flavor%>
+</div>
+<div>
+    <%= f.label :description %>
+    <%= f.text_field :description%>
+</div>
+
+<p> Select a Brand that already exists: </p>
+<div>
+<%= f.collection_select :brand_id, Brand.all, :id, :name %>
+</div>
+
+<p> Create a New Brand: </p>
+<div>
+    <%= f.fields_for :brand do |b| %>
+    <%= b.label :name %>
+    <%= b.text_field :name %>
+    <% end %>    
+</div>
+<br>
+    <%= f.submit %>
+<% end %>
+
+<%#    // t.string "flavor"
+    // t.string "description"
+    // t.integer "brand_id", null: false
+    // t.integer "user_id", null: false 
+
+      t.string "name"
+    t.boolean "in_stock"
+    
+    %>
