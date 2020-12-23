@@ -14,6 +14,13 @@ class NoodlesController < ApplicationController
         end
     end
 
+    def index
+        @noodles = Noodle.all
+      end
+    
+      def show
+        @noodle = Noodle.find_by_id(params[:id])
+      end
 
 
     private
