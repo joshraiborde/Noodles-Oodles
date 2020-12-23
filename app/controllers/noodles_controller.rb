@@ -16,11 +16,11 @@ class NoodlesController < ApplicationController
 
     def index
         @noodles = Noodle.all
-      end
+    end
     
-      def show
+    def show
         @noodle = Noodle.find_by_id(params[:id])
-      end
+    end
 
 
     private
