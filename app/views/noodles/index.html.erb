@@ -1,0 +1,9 @@
+<h1>All the Noodles</h1>
+
+<% @noodles.each do |n| %>
+
+  <h2><%= n.flavor%> - <%= n.brand.name %> </h2>
+  <div>
+    <p><%= n.description %></p>
+  </div>
+<% end %>
