@@ -3,6 +3,7 @@
 <% @noodles.each do |n| %>
 
   <h2><%= n.flavor%> - <%= n.brand.name %> </h2>
+  <%= link_to "Write a review", new_noodle_review_path(n.id) %>
   <div>
     <p><%= n.description %></p>
   </div>
