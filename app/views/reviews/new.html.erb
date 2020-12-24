@@ -1,0 +1,27 @@
+<% if params[:noodle_id]%>
+<h1> Add a Review for <%= @review.noodle.flavor%> - <%= @review.noodle.brand.name %>  </h1>
+<% else %>
+<h1>Create a Review </h1>
+<% end %>
+
+<%=form_for(@review) do |f| %>
+<div>
+    <%= f.label :stars %>
+    <%= f.number_field :stars, min:0, max:5 %>
+</div>
+<br>
+<div>
+    <%= f.label :title %>
+    <%= f.text_field :title%>
+</div>
+<br>
+<div>
+    <%= f.label :content %>
+    <%= f.text_area :content, size: "25x10" %>
+</div>
+<br>
+<%= f.hidden_field :noodle_id%>
+
+<%= f.submit %>
+
+<% end %>
