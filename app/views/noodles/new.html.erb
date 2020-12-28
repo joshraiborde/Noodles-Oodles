@@ -1,4 +1,5 @@
 <h1>Add in New Noodles</h1>
+<% render partial: 'layouts/errors', locals: {object: @noodle} %> <%# renders errors from the layout view%>
 
 <%= form_for(@noodle) do |f|%>
 <div>
@@ -7,7 +8,7 @@
 </div>
 <div>
     <%= f.label :description %>
-    <%= f.text_field :description%>
+    <%= f.text_field :description %>
 </div>
 
 <p> Select a Brand that already exists: </p>
