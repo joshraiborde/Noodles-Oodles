@@ -4,9 +4,11 @@ class Noodle < ApplicationRecord
   has_many :reviews
   has_many :users, through: :reviews #people who have reviewed it
   # accepts_nested_attributes_for :brand
+
+  validates :flavor, presence: true
   
   def brand_attributes=(attributes)
-    brand = Brand.find_or_create_by(attributes) if !attributes[:name].empty?
+    brand = Brand.find_or_create_by(attributes) if !name.empty?
   end
 
 
