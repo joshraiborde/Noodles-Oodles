@@ -4,6 +4,10 @@
 <h1>Create a Review </h1>
 <% end %>
 
+
+<% render partial: 'layouts/errors', locals: {object: @review} %> <%# renders errors from the layout view%>
+
+
 <%=form_for(@review) do |f| %>
 <div>
     <%= f.label :stars %>
