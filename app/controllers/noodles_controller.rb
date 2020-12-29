@@ -1,13 +1,13 @@
 class NoodlesController < ApplicationController
     def new
-        @noodle= Noodle.new
+        @noodle = Noodle.new
         @noodle.build_brand
     end
 
     def create
         @noodle = Noodle.new(noodle_params)
         @noodle.user_id = session[:user_id]
-        if @noodle.save
+        if @noodle.save #this is where validatins occur
             redirect_to noodle_path(@noodle)
         else
             render :new
