@@ -9,6 +9,14 @@
 
 
 <%=form_for(@review) do |f| %>
+    <% if params[:noodle_id] %>
+        <%= f.hidden_field :noodle_id %>
+    <% else %>
+        <div>
+            <%= f.label :noodle_id, "Select a Noodle" %>
+            <%= f.collection_select :noodle_id, Noodle.all, :id, :flavor_and_brand, include_blank: true %>
+        </div>
+    <% end %>
 <div>
     <%= f.label :stars %>
     <%= f.number_field :stars, min:0, max:5 %>
