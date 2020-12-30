@@ -1,11 +1,6 @@
-<% if params[:noodle_id]%>
-<h1> Add a Review for <%= @review.noodle.flavor%> - <%= @review.noodle.brand.name %>  </h1>
-<% else %>
-<h1>Create a Review </h1>
-<% end %>
+<%=  display_header(@review)%>
 
-
-<% render partial: 'layouts/errors', locals: {object: @review} %> <%# renders errors from the layout view%>
+<%= render partial: 'layouts/errors', locals: {object: @review}  %> <%# renders errors from the layout view%>
 
 
 <%=form_for(@review) do |f| %>
@@ -14,7 +9,7 @@
     <% else %>
         <div>
             <%= f.label :noodle_id, "Select a Noodle" %>
-            <%= f.collection_select :noodle_id, Noodle.all, :id, :flavor_and_brand, include_blank: true %>
+            <%= f.collection_select :noodle_id, Noodle.alpha, :id, :flavor_and_brand, include_blank: true %>
         </div>
     <% end %>
 <div>
