@@ -7,6 +7,12 @@ class Noodle < ApplicationRecord
 
   validates :flavor, presence: true #use the plural form of validate when using default validators in the model, it is followed by the attributes that are being validated
   validate :not_a_duplicate #use the singular form of validate when using custom validators in the model, it is followed by the sub-methods created to validate attributes
+
+  scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(stars) desc')}
+
+  def self.alpha
+    order(:flavor)
+  end
   
   def brand_attributes=(attributes)
     brand = Brand.find_or_create_by(attributes) if !attributes['name'].empty?
@@ -23,5 +29,9 @@ class Noodle < ApplicationRecord
     "#{flavor} - #{brand.name}"
   end
 
+  #scope methods are defined to be in the models
+  #scope methods are typically called in the controllers
+  #sometimes, scope methods are called in the view
+  #if you want to change the way something is displayed, you can call a scope method in the views, if you're only going to use it once in the view
 
 end
