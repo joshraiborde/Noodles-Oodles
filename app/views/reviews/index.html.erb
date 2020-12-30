@@ -1,7 +1,11 @@
-<h1> All the Reviews </h1>
+<% if @noodle %>
+  <h1>Reviews for <%= @noodle.flavor%> - <%= @noodle.brand.name%></h1>
+<% else %>
+  <h1>All the Reviews </h1>
+<% end %>
 
 <ul>
 <% @reviews.each do |r| %>
-<li><%= r.noodle.flavor%>: <%= r.title%> - <%= r.stars%> </li> <br>
+<li><%= r.noodle.flavor%>: <%= link_to r.title, review_path(r)%> - <%= r.stars%></li> <br>
 <% end %>
 </ul>
