@@ -15,7 +15,7 @@ class NoodlesController < ApplicationController
     end
 
     def index
-        @noodles = Noodle.all
+        @noodles = Noodle.order_by_rating.includes(:brand)
     end
     
     def show
