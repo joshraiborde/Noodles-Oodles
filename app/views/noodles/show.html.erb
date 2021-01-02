@@ -1,6 +1,10 @@
 <h1><%= @noodle.flavor%>  </h1>
 
-<h2><%= @noodle.flavor%> - <%= @noodle.brand.name %> </h2>
+<% if @noodle.image.attach? %>
+  <%= image_tag url_for(@noodle.image) %>
+<% end %>
+
+<h2> <%= @noodle.brand.name %> </h2>
 <div>
   <p><%= @noodle.description %></p>
 </div>
