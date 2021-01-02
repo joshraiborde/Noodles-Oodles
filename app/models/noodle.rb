@@ -4,6 +4,7 @@ class Noodle < ApplicationRecord
   has_many :reviews
   has_many :users, through: :reviews #people who have reviewed it
   # accepts_nested_attributes_for :brand
+  has_one_attached :image
 
   validates :flavor, presence: true #use the plural form of validate when using default validators in the model, it is followed by the attributes that are being validated
   validate :not_a_duplicate #use the singular form of validate when using custom validators in the model, it is followed by the sub-methods created to validate attributes
@@ -15,7 +16,12 @@ class Noodle < ApplicationRecord
   end
   
   def brand_attributes=(attributes)
-    brand = Brand.find_or_create_by(attributes) if !attributes['name'].empty?
+    self.brand = Brand.find_or_create_by(attributes) if !attributes['name'].empty?
+    self.brand
+  end
+
+  def thumbnail
+    self.image.variant(resize: "100x100")
   end
 
   def not_a_duplicate
