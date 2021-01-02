@@ -4,6 +4,9 @@
 
   <h2><%= n.flavor%> - <%= n.brand.name %> </h2>
   <%= link_to "Write a review", new_noodle_review_path(n.id) %>
+  <% if n.image.attached? %>
+    <%= image_tag url_for(n.thumbnail) %>
+  <% end %>
   <div>
     <p><%= n.description %></p>
   </div>
