@@ -8,8 +8,11 @@ class NoodlesController < ApplicationController
         @noodle = Noodle.new(noodle_params)
         @noodle.user_id = session[:user_id]
         if @noodle.save #this is where validatins occur
+            @noodle.image.purge
+            @noodle.image.attach(params[:noodle][:image])
             redirect_to noodle_path(@noodle)
         else
+            @noodle.build_brand
             render :new
         end
     end
