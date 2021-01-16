@@ -1,1 +1,61 @@
-Welcome <%= @user.username%>!
+<div class="row container">
+  <p> Show All Reviews by <%= link_to @user.username, reviews_path(user_id: @user) %></p>
+  <p> Show All Brands by <%= link_to @user.username, brands_path(user_id: @user) %></p>
+
+  <div class="col-md-8 theme_box" >
+
+<h4>All Noodles by : <%= link_to @user.username, user_path(@user) %></h4>
+
+<div class="row">
+  <% @user.noodles.each do |noodle| %>
+    <div class="col-md-6">
+      <%=link_to noodle_path(noodle) do %>
+        <% if noodle.image.attached? %>
+          <%= image_tag noodle.thumbnail %>
+        <% end %>
+        <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2>
+        <h4>Rating: <%= current_rating(noodle) %></h4>
+      <%end%>
+      <%if current_user %>
+        <%= link_to "Write a review", new_noodle_review_path(noodle.id) %>
+      <%else%>
+        <%= link_to "Write a review", login_path %>
+      <%end%>
+      <div>
+        <p><%= noodle.description %></p>
+      </div>
+      <br><br><br>
+    </div>
+  <% end %>
+</div>
+</div>
+
+  <div class="col-md-4">
+  <h1>All the Brands</h1>
+  <ol>
+    <% @user.brands.each do |brand| %>
+      <li><%= link_to brand.name, brand_path(brand)%></li>
+    <% end %>
+  </ol>
+  </div>
+</div>
+<div class="row container">
+  <div class="col-md-8 theme_box" >
+      <h1>All the Reviews </h1>
+    <ul>
+      <% @user.reviews.each do |review| %>
+        <h3> Noodle: <%= review.noodle.flavor%></h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
+            Reviewed by : <%= link_to "#{review.user.username}", reviews_path(user_id: review.user.id) %>
+        <br><br>
+      <% end %>
+    </ul>
+    <div class="col-md-4">
+    </div>
+
+  </div>
+</div>
+
+<!--<div class="row container">-->
+<!--  <div class="col-md-8" style="padding-bottom: 70px;padding-right: 70px;-->
+<!--    padding-left: 70px;">-->
+<!--    <h1> Noodle Flavor: <%#= @noodle.flavor%>  </h1>-->

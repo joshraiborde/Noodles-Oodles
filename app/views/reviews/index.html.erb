@@ -5,7 +5,17 @@
 <% end %>
 
 <ul>
-<% @reviews.each do |r| %>
-<li><%= r.noodle.flavor%>: <%= link_to r.title, review_path(r)%> - <%= r.stars%></li> <br>
-<% end %>
+<% @reviews.each do |review| %>
+    <h3> Noodle: <%= review.noodle.flavor%></h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
+     Reviewed by : <%= link_to "#{review.user.username}", reviews_path(user_id: review.user.id) %>
+    <div>
+      <% if current_user %>
+        <% if review.user_id == current_user.id ||  current_user.admin  %>
+          <%= link_to "Edit",  edit_review_path(review) %>
+          <%= link_to "Delete", review_path(review),  method: :delete %>
+        <% end %>
+      <% end %>
+    </div>
+    <br><br>
+  <% end %>
 </ul>

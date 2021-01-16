@@ -1,10 +1,10 @@
 class Noodle < ApplicationRecord
   belongs_to :brand
   belongs_to :user #creator of it
-  has_many :reviews
+  has_many :reviews, :dependent => :delete_all
   has_many :users, through: :reviews #people who have reviewed it
   # accepts_nested_attributes_for :brand
-  has_one_attached :image
+  has_one_attached :image, :dependent => :delete_all
 
   validates :flavor, presence: true #use the plural form of validate when using default validators in the model, it is followed by the attributes that are being validated
   validate :not_a_duplicate #use the singular form of validate when using custom validators in the model, it is followed by the sub-methods created to validate attributes
@@ -21,9 +21,12 @@ class Noodle < ApplicationRecord
   end
 
   def thumbnail
-    self.image.variant(resize: "100x100")
+    self.image.variant(resize: "300x250")
   end
 
+  def cover_thumbnail
+    self.image.variant(resize: "500x450")
+  end
   def not_a_duplicate
     #if there is already a pack of noodles with that flavor && brand, throw an error
     if Noodle.find_by(flavor: flavor, brand_id: brand_id)

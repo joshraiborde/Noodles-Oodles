@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+  @import "bootstrap-sprockets";
+  @import "bootstrap";
+
+.center-align{
+  text-align: center;
+}
+.theme_box{
+  padding-bottom: 70px;padding-right: 70px;
+  padding-left: 70px;
+  border-bottom: 1px solid #dee2e6!important;
+  border-right: 1px solid #dee2e6!important;
+  border-top: 1px solid #dee2e6!important;
+}
