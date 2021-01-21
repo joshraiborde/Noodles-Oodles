@@ -7,7 +7,11 @@ class NoodlesController < ApplicationController
     def create
         @noodle = Noodle.new(noodle_params)
         @noodle.user_id = session[:user_id]
+<<<<<<< HEAD
         @noodle.brand.user_id =  session[:user_id] if @noodle.brand
+=======
+        @noodle.brand.user_id =  session[:user_id]
+>>>>>>> 99c1e6bcee67425da41953b4fa0c4db1ed5869aa
         if @noodle.save #this is where validatins occur
             @noodle.image.attach(params[:noodle][:image])
             redirect_to noodle_path(@noodle)

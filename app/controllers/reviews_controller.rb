@@ -42,7 +42,10 @@ class ReviewsController < ApplicationController
             redirect_to noodle_path(@noodle)
         end
     end
+<<<<<<< HEAD
 
+=======
+>>>>>>> 99c1e6bcee67425da41953b4fa0c4db1ed5869aa
     def index
         if params[:user_id]
         @reviews  = Review.where(user_id: params[:user_id])

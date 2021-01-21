@@ -158,8 +158,11 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
       rack-protection
+<<<<<<< HEAD
     omniauth-facebook (8.0.0)
       omniauth-oauth2 (~> 1.2)
+=======
+>>>>>>> 99c1e6bcee67425da41953b4fa0c4db1ed5869aa
     omniauth-github (2.0.0)
       omniauth (~> 2.0)
       omniauth-oauth2 (~> 1.7.1)
@@ -171,9 +174,12 @@ GEM
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+<<<<<<< HEAD
     omniauth-rails_csrf_protection (1.0.0)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+=======
+>>>>>>> 99c1e6bcee67425da41953b4fa0c4db1ed5869aa
     public_suffix (4.0.6)
     puma (5.1.1)
       nio4r (~> 2.0)
