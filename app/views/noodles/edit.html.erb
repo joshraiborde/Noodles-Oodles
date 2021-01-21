@@ -1,0 +1,35 @@
+<h1>Edit Noodle</h1>
+<div>
+  <% render partial: 'layouts/errors', locals: {object: @noodle} %> <%# renders errors from the layout view%>
+  <%=  form_for(@noodle ,class:'form-inline' ) do |f|%>
+    <div class="form-group">
+      <%= f.label :flavor %>
+      <%= f.text_field :flavor%>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+    <div class="form-group">
+      <p> <%= f.label :image %>
+        <%= f.file_field :image %></p>
+    </div>
+    <br>
+
+    <label> Select a Brand that already exists: </label>
+    <div class="form-group">
+      <%= f.collection_select :brand_id, Brand.all, :id, :name, {:selected => @noodle.brand_id}, :include_blank => "Select One"%>
+    </div>
+
+    <%= f.submit %>
+  <% end %>
+</div>
+<%#    // t.string "flavor"
+    // t.string "description"
+    // t.integer "brand_id", null: false
+    // t.integer "user_id", null: false
+
+      t.string "name"
+    t.boolean "in_stock"
+
+%>

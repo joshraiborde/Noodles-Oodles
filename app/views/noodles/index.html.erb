@@ -1,13 +1,24 @@
 <h1>All the Noodles</h1>
-
-<% @noodles.each do |n| %>
-
-  <h2><%= n.flavor%> - <%= n.brand.name %> </h2>
-  <%= link_to "Write a review", new_noodle_review_path(n.id) %>
-  <% if n.image.attached? %>
-    <%= image_tag url_for(n.thumbnail) %>
-  <% end %>
+<div class="row">
+<% @noodles.each do |noodle| %>
+    <div class="col-sm-6 col-md-4">
+     <%=link_to noodle_path(noodle) do %>
+      <% if noodle.image.attached? %>
+        <%= image_tag noodle.thumbnail %>
+      <% end %>
+      <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2>
+        <h4>Rating: <%= current_rating(noodle) %></h4> <!-- in the app/helpers/application_helper.rb file -->
+        <p>Created by <%=link_to noodle.user.username,user_path(noodle.user) %></p>
+    <%end%>
+      <%if current_user %>
+        <%= link_to "Write a review", new_noodle_review_path(noodle.id) %>
+      <%else%>
+        <%= link_to "Write a review", login_path %>
+      <%end%>
   <div>
-    <p><%= n.description %></p>
+    <p><%= noodle.description %></p>
   </div>
+      <br><br><br>
+   </div>
 <% end %>
+</div>

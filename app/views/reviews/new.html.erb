@@ -1,4 +1,4 @@
-<%=  display_header(@review)%>
+<%=  display_header(@review)%> <!-- in the app/helpers/reviews_helper.rb fle -->
 
 <%= render partial: 'layouts/errors', locals: {object: @review}  %> <%# renders errors from the layout view%>
 
@@ -32,3 +32,4 @@
 <%= f.submit %>
 
 <% end %>
+

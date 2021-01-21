@@ -1,10 +1,43 @@
-<h1><%= @noodle.flavor%>  </h1>
-
-<% if @noodle.image.attach? %>
-  <%= image_tag url_for(@noodle.image) %>
+<div class="row container">
+  <div class="col-md-8 theme_box" >
+  <h1> Noodle Flavor: <%= @noodle.flavor%>  </h1>
+<p>Created by <%=link_to @noodle.user.username,user_path(@noodle.user) %></p>
+<% if @noodle.image.attached? %>
+  <%= image_tag url_for(@noodle.cover_thumbnail) %>
 <% end %>
+    <div>
+      <% if current_user %>
+        <% if @noodle.user_id == current_user.id ||  current_user.admin  %>
+          <%= link_to "Edit",  edit_noodle_path(@noodle) %>
+          <%= link_to "Delete", noodle_path(@noodle),  method: :delete %>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to "Write a review", new_noodle_review_path(@noodle.id) %> |
+      <%= link_to "Back", '/' %>
+    </div>
 
-<h2> <%= @noodle.brand.name %> </h2>
-<div>
-  <p><%= @noodle.description %></p>
+  </div>
+ <div class="col-md-4">
+   <p><h2>Brand: <%= @noodle.brand.name %></h2> </p>
+   <h4>Rating: <%= current_rating(@noodle) %></h4> <!-- in the app/helpers/application_helper.rb file -->
+   <div>
+     <h4>Description: </h4><p><%= @noodle.description %></p>
+   </div>
+  <% if @noodle %>
+  <h1>Reviews for <%= @noodle.flavor%> - <%= @noodle.brand.name%></h1>
+  <% else %>
+  <h1>All the Reviews </h1>
+  <% end %>
+
+  <ul>
+  <% @noodle.reviews.each do |review| %>
+    <h3><%= review.noodle.flavor%>:</h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
+    Reviewed by :<%= link_to "#{review.user.username}", reviews_path(user_id: review.user.id) %>
+
+  <% end %>
+  </ul>
+  <br><br>
+   </div>
 </div>
