@@ -14,11 +14,7 @@
           <%= image_tag noodle.thumbnail %>
         <% end %>
         <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2>
-<<<<<<< HEAD
         <h4>Rating: <%= current_rating(noodle) %></h4> <!-- in the app/helpers/application_helper.rb file -->
-=======
-        <h4>Rating: <%= current_rating(noodle) %></h4>
->>>>>>> 99c1e6bcee67425da41953b4fa0c4db1ed5869aa
       <%end%>
       <%if current_user %>
         <%= link_to "Write a review", new_noodle_review_path(noodle.id) %>
