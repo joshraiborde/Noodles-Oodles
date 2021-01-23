@@ -1,15 +1,14 @@
 <div style="text-align: center"> <h1>Welcome to Noodles Oodles!</h1>
 
   <%if !current_user %>
-    <%= link_to "Login", login_path %>
-    OR
-    <%= link_to "Signup", signup_path %>
-    OR
+    <h3> <%= link_to "Login", login_path %>
+    /
+ <%= link_to "Sign Up", signup_path %> </h3>
+    <br>
     <%= button_to "Signup with Google", "/auth/google_oauth2" %>
-    <%# OR
-    <%= link_to 'Signup with Facebook', '/auth/facebook' %>
-    OR
-    <%= button_to "Signup with Github", "/auth/github" %>
-    <%end %>
+    <br>
+    <%= button_to "Signup with Github", "/auth/github" %> 
+  </div>
+  <%end %> <!--2021-01-22 update the login and signups look  -->
 </p>
 </div>
