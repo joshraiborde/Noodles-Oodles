@@ -1,10 +1,13 @@
 <div class="row container">
-  <p> Show All Reviews by <%= link_to @user.username, reviews_path(user_id: @user) %></p>
-  <p> Show All Brands by <%= link_to @user.username, brands_path(user_id: @user) %></p>
+<h4>Welcome to <%= @user.username.capitalize %>'s Noodles Page</h4>
+  <p> <%= @user.username.capitalize %>'s <%= link_to 'Reviews', reviews_path(user_id: @user) %></p>
+  <p> <%= @user.username.capitalize %>'s <%= link_to 'Brands', brands_path(user_id: @user) %></p>
+<!--  <p> Show All Reviews by <%= link_to @user.username, reviews_path(user_id: @user) %></p> -->
+  <!-- <p> Show All Brands by <%= link_to @user.username, brands_path(user_id: @user) %></p> -->
 
   <div class="col-md-8 theme_box" >
 
-<h4>All Noodles by : <%= link_to @user.username, user_path(@user) %></h4>
+<h4>All Noodles by : <%= link_to @user.username.capitalize, user_path(@user) %></h4>
 
 <div class="row">
   <% @user.noodles.each do |noodle| %>
@@ -13,7 +16,9 @@
         <% if noodle.image.attached? %>
           <%= image_tag noodle.thumbnail %>
         <% end %>
-        <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2>
+        <!-- <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2> -->
+       <h2><%= noodle.brand.name %>:</h2> <!--2021-01-22 update the noodle title look  -->
+      <h3><%= noodle.flavor%> Flavor  </h3>
         <h4>Rating: <%= current_rating(noodle) %></h4> <!-- in the app/helpers/application_helper.rb file -->
       <%end%>
       <%if current_user %>
@@ -34,7 +39,7 @@
   <h1>All the Brands</h1>
   <ol>
     <% @user.brands.each do |brand| %>
-      <li><%= link_to brand.name, brand_path(brand)%></li>
+      <ol><%= link_to brand.name, brand_path(brand)%> </ol>
     <% end %>
   </ol>
   </div>
@@ -43,9 +48,12 @@
   <div class="col-md-8 theme_box" >
       <h1>All the Reviews </h1>
     <ul>
-      <% @user.reviews.each do |review| %>
-        <h3> Noodle: <%= review.noodle.flavor%></h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
-            Reviewed by : <%= link_to "#{review.user.username}", reviews_path(user_id: review.user.id) %>
+     <% @user.reviews.each do |review| %>
+        <h3> <%= review.noodle.flavor%></h3>
+        <%= link_to review.title, review_path(review)%> by <%= link_to "#{review.user.username.capitalize}", reviews_path(user_id: review.user.id) %> <br> <!--2021-01-22 update the review iteration look  -->
+            Rating: <%= review.stars%> out of 5<!--2021-01-22 update the review iteration look  -->
+            <!-- <h3> <ol> <li><%= review.noodle.flavor%></li></ol></h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
+            Reviewed by : <%= link_to "#{review.user.username.capitalize}", reviews_path(user_id: review.user.id) %> -->
         <br><br>
       <% end %>
     </ul>
@@ -54,8 +62,3 @@
 
   </div>
 </div>
-
-<!--<div class="row container">-->
-<!--  <div class="col-md-8" style="padding-bottom: 70px;padding-right: 70px;-->
-<!--    padding-left: 70px;">-->
-<!--    <h1> Noodle Flavor: <%#= @noodle.flavor%>  </h1>-->
