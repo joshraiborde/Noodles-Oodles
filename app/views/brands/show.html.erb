@@ -2,14 +2,14 @@
   <div class="row">
   <div class="col-md-8 theme_box" >
   <h4>Brand : <%= @brand.name %> </h4>
-  <h5>Created by  : <%= link_to @brand.user.username, user_path(@brand.user) %> </h5>
+  <h5>Created by  : <%= link_to @brand.user.username.capitalize, user_path(@brand.user) %> </h5>
   </div>
     <div class="col-md-4">
-    <h4>All Flavors Associated with Brand - <%= @brand.name %></h4>
+    <h4><%= @brand.name %>'s Flavors </h4>
     <% @flavors.each do |fl|%>
       <li><%=fl %></li>
        <%end %>
   </div>
 </div>
 </div>
-<%= link_to "User Show Page", user_path(@brand.user) %>
+<%= link_to "#{@brand.user.username.capitalize}'s Show Page", user_path(@brand.user) %>
