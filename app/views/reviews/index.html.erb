@@ -7,7 +7,12 @@
 <ul>
 <% @reviews.each do |review| %>
     <h3> <ol> <li> <%= review.noodle.flavor%> </li> </ol> </h3>
-    <%= link_to review.title, review_path(review)%> <%if current_user %> by <%= link_to "#{review.user.username.capitalize}", reviews_path(user_id: review.user.id) %><!--2021-01-22 update the noodle title look  -->
+    <% if review.noodle.image.attached? %> <!--2021-01-23 added image to the review-->
+        <%= image_tag review.noodle.thumbnail %>
+      <% end %>
+      <br>
+    <%= link_to review.title, review_path(review)%>
+    <%if current_user %> by <%= link_to "#{review.user.username.capitalize}", user_path(review.user)  %><!--2021-01-22 update the noodle title look  -->
     <%end%>
 
      <br>

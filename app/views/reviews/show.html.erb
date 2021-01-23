@@ -1,4 +1,9 @@
+<% if @review.noodle.image.attached? %> <!--2021-01-23 added image to the review-->
+        <%= image_tag @review.noodle.thumbnail %>
+      <% end %>
 <h1><%= @review.title%> </h1>
+<%if current_user %> by <%= link_to "#{@review.user.username.capitalize}", user_path(@review.user)  %><!--2021-01-22 update the noodle title look  -->
+    <%end%>
 <p>Rating: <%= @review.stars%> out of 5</p>
 <p><%= @review.content%></p>
 <div>

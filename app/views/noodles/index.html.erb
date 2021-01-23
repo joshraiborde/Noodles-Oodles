@@ -9,8 +9,8 @@
       <!-- <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2> -->
       <h2><%= noodle.brand.name %>: </h2>
       <h3><%= noodle.flavor%> Flavor  </h3>
-        <h4>Rating: <%= current_rating(noodle) %></h4> <!-- in the app/helpers/application_helper.rb file -->
-        <%if current_user %><p>Created by:  <%=link_to noodle.user.username.capitalize, user_path(noodle.user) %></p>
+        <h4>Rating: <%= current_rating(noodle) %> out of 5</h4> <!-- in the app/helpers/application_helper.rb file -->
+        <%if current_user %><p>Created by: <%=link_to noodle.user.username.capitalize, user_path(noodle.user) %></p>
         <%end%>
     <%end%>
       <%if current_user %>

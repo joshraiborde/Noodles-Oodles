@@ -10,4 +10,10 @@ class BrandsController < ApplicationController
         @brand =  Brand.find(params[:id])
         @flavors  = Noodle.where(brand: @brand).collect(&:flavor)
     end
+    
+    # def destroy
+    #     @brand = Brand.find_by_id(params[:id])
+    #     @brand.destroy
+    #     redirect_to brands_path
+    # end
 end
