@@ -23,13 +23,15 @@
       <li><%= link_to "All Noodles", noodles_path %> </li>
       <li><%= link_to "All Reviews", reviews_path %></li>
       <li><%= link_to "All Brands", brands_path %></li>
-      <%# <li><%= link_to "All Brands", brands_path %></li>
+      <% if current_user %>
       <li><%= link_to "All Users", users_path %></li>
+      <%end%>
 
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
-        <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+      <li><%= link_to current_user.username.capitalize, user_path(current_user) %></li>
+         <li><%= link_to "Log Out", logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Login", login_path %></li>
         <li><%= link_to "Signup", signup_path %></li>
@@ -43,17 +45,14 @@
 
   <%if !current_user %>
   <div style="text-align: center"> <h1>Welcome to Noodles Oodles!</h1>
-    <%= link_to "Login", login_path %>
-    OR
-    <%= link_to "Signup", signup_path %>
-    OR
-    <%= button_to "Signup with Google", "/auth/google_oauth2" %>
-    <!--  OR
-    <%= link_to 'Signup with Facebook', '/auth/facebook' %> -->
-     OR
+    <h3> <%= link_to "Login", login_path %>
+    /
+ <%= link_to "Sign Up", signup_path %> </h3>
+<%= button_to "Signup with Google", "/auth/google_oauth2" %>
+    <br>
     <%= button_to "Signup with Github", "/auth/github" %> 
   </div>
-  <%end %>
+  <%end %> <!--2021-01-22 update the login and signups look  -->
 
 
 <div class="container">
