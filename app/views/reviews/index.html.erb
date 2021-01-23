@@ -6,18 +6,26 @@
 
 <ul>
 <% @reviews.each do |review| %>
-    <h3> Noodle: <%= review.noodle.flavor%></h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
-     Reviewed by : <%= link_to "#{review.user.username}", reviews_path(user_id: review.user.id) %>
+    <h3> <ol> <li> <%= review.noodle.flavor%> </li> </ol> </h3>
+    <%= link_to review.title, review_path(review)%> <%if current_user %> by <%= link_to "#{review.user.username.capitalize}", reviews_path(user_id: review.user.id) %><!--2021-01-22 update the noodle title look  -->
+    <%end%>
+
+     <br>
+     Rating: <%= review.stars%> out of 5<br> 
+         <!-- <h3> Noodle: <%= review.noodle.flavor%></h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
+     Reviewed by : <%= link_to "#{review.user.username.capitalize}", reviews_path(user_id: review.user.id) %> -->
     <div>
       <% if current_user %>
         <% if review.user_id == current_user.id ||  current_user.admin  %>
-          <%= link_to "Edit",  edit_review_path(review) %>
+          <%= link_to "Edit",  edit_review_path(review) %> |
           <%= link_to "Delete", review_path(review),  method: :delete %>
+          <p style="border-bottom: 10px solid #ccc;"></p>
         <% end %>
       <% end %>
     </div>
     <br><br>
   <% end %>
+  
 </ul>
 
 
