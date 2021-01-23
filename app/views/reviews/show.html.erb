@@ -1,13 +1,13 @@
-<h1><%= @review.title%> - <%= @review.stars%> </h1>
-
+<h1><%= @review.title%> </h1>
+<p>Rating: <%= @review.stars%> out of 5</p>
 <p><%= @review.content%></p>
 <div>
   <% if current_user %>
     <% if @review.user_id == current_user.id ||  current_user.admin  %>
-      <%= link_to "Edit",  edit_review_path(@review) %>
+      <%= link_to "Edit",  edit_review_path(@review) %> |
       <%= link_to "Delete", review_path(@review),  method: :delete %>
     <% end %>
   <% end %>
 </div>
 <br> <br>
-<br><p><%= link_to "Back To Noodle", noodle_path(@review.noodle_id) %> </p>
+<br><p><%= link_to "Back To #{@review.noodle.flavor}", noodle_path(@review.noodle_id) %> </p>
