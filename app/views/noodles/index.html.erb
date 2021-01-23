@@ -6,9 +6,12 @@
       <% if noodle.image.attached? %>
         <%= image_tag noodle.thumbnail %>
       <% end %>
-      <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2>
+      <!-- <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2> -->
+      <h2><%= noodle.brand.name %>: </h2>
+      <h3><%= noodle.flavor%> Flavor  </h3>
         <h4>Rating: <%= current_rating(noodle) %></h4> <!-- in the app/helpers/application_helper.rb file -->
-        <p>Created by <%=link_to noodle.user.username,user_path(noodle.user) %></p>
+        <%if current_user %><p>Created by:  <%=link_to noodle.user.username.capitalize, user_path(noodle.user) %></p>
+        <%end%>
     <%end%>
       <%if current_user %>
         <%= link_to "Write a review", new_noodle_review_path(noodle.id) %>
