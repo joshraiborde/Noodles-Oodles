@@ -1,42 +1,57 @@
 <div class="row container">
   <div class="col-md-8 theme_box" >
   <h1> Noodle Flavor: <%= @noodle.flavor%>  </h1>
-<p>Created by <%=link_to @noodle.user.username,user_path(@noodle.user) %></p>
+<%if current_user %><p>Created by <%=link_to @noodle.user.username.capitalize, user_path(@noodle.user) %></p>
+<%end%>
 <% if @noodle.image.attached? %>
   <%= image_tag url_for(@noodle.cover_thumbnail) %>
 <% end %>
     <div>
       <% if current_user %>
         <% if @noodle.user_id == current_user.id ||  current_user.admin  %>
-          <%= link_to "Edit",  edit_noodle_path(@noodle) %>
+          <%= link_to "Edit",  edit_noodle_path(@noodle) %> |
           <%= link_to "Delete", noodle_path(@noodle),  method: :delete %>
         <% end %>
       <% end %>
     </div>
     <div>
+    <% if !current_user %>
+      <%= link_to "Write a review", login_path %> |
+      <%= link_to "Back", '/' %>
+      <%else%>
       <%= link_to "Write a review", new_noodle_review_path(@noodle.id) %> |
       <%= link_to "Back", '/' %>
+      <%end%>
     </div>
-
   </div>
+
+
  <div class="col-md-4">
    <p><h2>Brand: <%= @noodle.brand.name %></h2> </p>
    <h4>Rating: <%= current_rating(@noodle) %></h4> <!-- in the app/helpers/application_helper.rb file -->
    <div>
      <h4>Description: </h4><p><%= @noodle.description %></p>
    </div>
+   <p style="border-bottom: 5px solid #ccc;"></p>
   <% if @noodle %>
-  <h1>Reviews for <%= @noodle.flavor%> - <%= @noodle.brand.name%></h1>
+  <h4>Reviews for <%= @noodle.flavor%> - <%= @noodle.brand.name%></h4>
   <% else %>
   <h1>All the Reviews </h1>
-  <% end %>
-
+  <% end %> <!--2021-01-22 update the review title look  -->
+<p style="border-bottom: 10px solid #ccc;"></p>
   <ul>
   <% @noodle.reviews.each do |review| %>
-    <h3><%= review.noodle.flavor%>:</h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
-    Reviewed by :<%= link_to "#{review.user.username}", reviews_path(user_id: review.user.id) %>
-
-  <% end %>
+    <h3><ol><li><%= review.noodle.flavor%></li></ol></h3>
+    <!-- <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
+    Reviewed by :<%= link_to "#{review.user.username}", reviews_path(user_id: review.user.id) %> -->
+    <%= link_to review.title, review_path(review)%> 
+    <% if current_user %>
+    by <%= link_to "#{review.user.username.capitalize}", reviews_path(user_id: review.user.id) %><br> <!--2021-01-22 update the review iteration look  -->
+    <%end%>
+    <br>
+    Rating: <%= review.stars%> out of 5
+<p style="border-bottom: 10px solid #ccc;"></p>
+  <% end %> <!--2021-01-22 update the review iteration look  -->
   </ul>
   <br><br>
    </div>
