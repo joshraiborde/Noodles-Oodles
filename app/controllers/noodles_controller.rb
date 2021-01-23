@@ -8,8 +8,9 @@ class NoodlesController < ApplicationController
         @noodle = Noodle.new(noodle_params)
         @noodle.user_id = session[:user_id]
         @noodle.brand.user_id =  session[:user_id] if @noodle.brand
+        @noodle.image.attach(params[:noodle][:image]) #2021-01-23 moved this above @noodle.save
         if @noodle.save #this is where validatins occur
-            @noodle.image.attach(params[:noodle][:image])
+            
             redirect_to noodle_path(@noodle)
         else
             @noodle.build_brand
@@ -22,6 +23,7 @@ class NoodlesController < ApplicationController
     end
     
     def show
+        # byebug
         @noodle = Noodle.find_by_id(params[:id])
     end
 
