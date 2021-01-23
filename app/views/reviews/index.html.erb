@@ -5,8 +5,10 @@
 <% end %>
 
 <ul>
+
 <% @reviews.each do |review| %>
-    <h3> <ol> <li> <%= review.noodle.flavor%> </li> </ol> </h3>
+    <h3><%= review.noodle.brand.name%>: <%= review.noodle.flavor%> </h3>
+    
     <% if review.noodle.image.attached? %> <!--2021-01-23 added image to the review-->
         <%= image_tag review.noodle.thumbnail %>
       <% end %>
@@ -19,18 +21,19 @@
      Rating: <%= review.stars%> out of 5<br> 
          <!-- <h3> Noodle: <%= review.noodle.flavor%></h3> <%= link_to review.title, review_path(review)%> - <%= review.stars%><br>
      Reviewed by : <%= link_to "#{review.user.username.capitalize}", reviews_path(user_id: review.user.id) %> -->
+    <p style="border-bottom: 10px solid #ccc;"></p>
     <div>
       <% if current_user %>
         <% if review.user_id == current_user.id ||  current_user.admin  %>
           <%= link_to "Edit",  edit_review_path(review) %> |
           <%= link_to "Delete", review_path(review),  method: :delete %>
-          <p style="border-bottom: 10px solid #ccc;"></p>
+
         <% end %>
       <% end %>
     </div>
     <br><br>
   <% end %>
-  
+
 </ul>
 
 
