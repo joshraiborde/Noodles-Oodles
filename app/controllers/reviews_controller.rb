@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
 
     def create
         @review = current_user.reviews.build(review_params)
+        @review.noodle_id = params[:review][:noodle]
         if @review.save
             redirect_to noodle_path(@review.noodle)
         else 
