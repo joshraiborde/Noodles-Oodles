@@ -19,7 +19,8 @@ class NoodlesController < ApplicationController
     end
 
     def index
-        @noodles = Noodle.order_by_rating.includes(:brand).reverse
+        @noodles = Noodle.order_by_rating.includes(:brand)
+        #.reverse
     end
     
     def show
