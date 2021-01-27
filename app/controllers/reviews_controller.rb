@@ -3,8 +3,7 @@ class ReviewsController < ApplicationController
         if @noodle = Noodle.find_by_id(params[:noodle_id])
             @review = @noodle.reviews.build
         else
-            @review = Review.new
-        #review belongs to a noodle
+            @review = Review.new #review belongs to a noodle
         end
     end
 

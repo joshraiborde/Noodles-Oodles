@@ -6,4 +6,5 @@ module ReviewsHelper
           content_tag(:h1, "Create a review")
         end
       end
+      # in the app/views/reviews/new.html.erb
 end

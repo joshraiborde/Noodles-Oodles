@@ -9,8 +9,7 @@ class NoodlesController < ApplicationController
         @noodle.user_id = session[:user_id]
         @noodle.brand.user_id =  session[:user_id] if @noodle.brand
         @noodle.image.attach(params[:noodle][:image]) #2021-01-23 moved this above @noodle.save
-        if @noodle.save #this is where validatins occur
-            
+        if @noodle.save #this is where validatins occur        
             redirect_to noodle_path(@noodle)
         else
             @noodle.build_brand
@@ -20,7 +19,6 @@ class NoodlesController < ApplicationController
 
     def index
         @noodles = Noodle.order_by_rating.includes(:brand)
-        #.reverse
     end
     
     def show

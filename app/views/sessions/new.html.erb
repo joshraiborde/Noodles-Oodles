@@ -2,7 +2,7 @@
 
 <p><%= flash[:error] %></p>
 
-<%= form_for(:user) do |f|%> <%# not creating a new user but finding a user that already exists,this is a form for the user model, and below are attributes of the user model%>
+<%= form_for(:user) do |f|%> <%# form_for: not creating a new user but finding a user that already exists,this is a form for the user model, and below are attributes of the user model%>
     <%= f.label :username %>
     <%= f.text_field :username%>
 
