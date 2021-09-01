@@ -1,5 +1,13 @@
 # README
 
+To start the Rails Server:
+in the terminal of the project directory, type in:
+rails s
+
+To STOP the Rails Server
+in the terminal of the project directory, on a Mac, press:
+control c
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

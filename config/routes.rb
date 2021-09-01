@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
   delete '/logout' => 'sessions#destroy'
+  get '/worst_noodle' => 'noodles#worst_noodle'
 
   resources :reviews
   resources :noodles do

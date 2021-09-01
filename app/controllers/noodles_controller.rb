@@ -20,6 +20,10 @@ class NoodlesController < ApplicationController
     def index
         @noodles = Noodle.order_by_rating.includes(:brand)
     end
+
+    def worst_noodle
+        @noodles = Review.all.order(:stars).first.noodle
+    end
     
     def show
         # byebug
