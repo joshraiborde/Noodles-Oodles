@@ -1,4 +1,4 @@
-<h1>All the Users </h1>
+<u><h1>All the Users </h1></u>
   <ul>
   <% @users.each do |user| %>
     <h5> User: </h5><%= link_to user.username.capitalize, user_path(user)%>
