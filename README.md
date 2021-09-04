@@ -8,25 +8,7 @@ To STOP the Rails Server
 in the terminal of the project directory, on a Mac, press:
 control c
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A fun Ruby-on-Rails blog post web-app for lovers of noodles who can sign-up and create posts and reviews for noodles.
+● Uses the Ruby on Rails framework to include reasonable validations for the simple attributes and standard user authentication which also allows logins such as Facebook, Twitter, Foursquare, GitHub
+● The use of nested resources with RESTful URLs are employed to view predictable URLs
+● ActiveRecord Query methods are used, rather than native ruby methods to perform queries on the database
