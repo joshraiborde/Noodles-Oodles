@@ -9,13 +9,18 @@
     width: auto;
     border: 5px solid rgb(241, 9, 9);
     margin: auto;
+    display: inline-block;
 }
 
 .noodle_container{
     height: auto;
     max-width: 100%;
     width: auto;
-    border: 5px solid rgb(241, 9, 9);
+    border: 1px solid rgba(255, 0, 0, .5);
+    -webkit-background-clip: padding-box; /* for Safari */
+    background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
     margin: auto;
     padding: 5px;
+    display: inline-block;
+
 }
