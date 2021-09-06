@@ -1,3 +1,21 @@
 // Place all the styles related to the Noodles controller here.
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+//
+
+#img {
+    height: auto;
+    max-width: 100%;
+    width: auto;
+    border: 5px solid rgb(241, 9, 9);
+    margin: auto;
+}
+
+.noodle_container{
+    height: auto;
+    max-width: 100%;
+    width: auto;
+    border: 5px solid rgb(241, 9, 9);
+    margin: auto;
+    padding: 5px;
+}
