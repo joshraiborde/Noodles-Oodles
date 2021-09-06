@@ -1,10 +1,12 @@
 <u><h1 style="text-align:center">All the Noodles</h1></u>
 <div class="row">
 <% @noodles.each do |noodle| %>
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4 noodle_container">
      <%=link_to noodle_path(noodle) do %>
       <% if noodle.image.attached? %>
+      <div id="img">
         <%= image_tag noodle.thumbnail %>
+        </div>
       <% end %>
       <!-- <h2><%= noodle.flavor%> - <%= noodle.brand.name %> </h2> -->
       <h2><%= noodle.brand.name %>: </h2>
